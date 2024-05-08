@@ -1,1 +1,1 @@
-# CSE341
+# cse-341-sergio

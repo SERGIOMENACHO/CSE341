@@ -5,9 +5,11 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "https://cse341-wq68.onrender.com/",
+  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/contacts": {
       "get": {

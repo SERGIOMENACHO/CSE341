@@ -3,14 +3,23 @@ const port = process.env.PORT || 3000;
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const bodyParser = require("body-parser");
+
 dotenv.config();
+
+// Swagger set up
+const swaggerUi = require("swagger-ui-express");
+const swaggerDoc = require("./swagger.json");
 
 mongoose
   .connect(process.env.MONGO_URI)
   .then((success) => console.log("Connected to database"))
   .catch((err) => console.log(err));
 
-app.use("/", require("./routes"));
+app
+  .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc))
+  .use(bodyParser.json())
+  .use("/", require("./routes"));
 
 app.listen(port, () => {
   console.log("Listening on port " + port);
